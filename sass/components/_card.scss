@@ -1,0 +1,94 @@
+.card{
+	perspective:150rem;
+	-moz-perspective:150rem;
+	&__side{
+		height:51rem;
+		transition:transform 1s ease;
+		backface-visibility:hidden;
+		border-radius:3px;
+		overflow:hidden; //da bi border-radius radio i na slici koja poklapa .card__side componentu
+		box-shadow:0 1.5rem 4rem rgba($color-black, .15);
+		&--front{
+		}
+		&--back{
+			position:absolute;
+			top:0;
+			width:100%;
+			transform:rotateY(-180deg); 
+			
+			z-index:-1;
+			&-1{
+				background:linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark); 
+			}
+		}
+	}
+		
+	
+	&:hover &__side--front{
+		transform:rotateY(180deg);
+
+	}
+
+	&:hover &__side--back{
+		transform:rotateY(0);
+	}
+
+	&__picture{
+		position:relative;
+		height:23rem;
+		background-blend-mode:screen; //ne radi u edge ni u IE
+		background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+						 url(../img/nat-5.jpg);
+		background-size:cover;
+		-webkit-clip-path:polygon(0 0, 100% 0 , 100% 85%, 0 100%);
+		clip-path:polygon(0 0, 100% 0 , 100% 85%, 0 100%);
+
+		&--1{
+
+		}
+
+		
+	}
+
+	&__heading{
+			position:absolute;
+			top:14rem;
+			right:2rem;
+			text-align:right;
+			width:75%;
+			font-size:2.8rem;
+			font-weight:300;
+			text-transform:uppercase;
+			color:#fff;
+	}
+	&__heading-span{//ovo nije child, ovo je obicno ime headingSpan, potpuno novi element u BEM,
+		padding:.7rem 2rem;
+		-webkit-box-decoration-break:clone;
+		box-decoration-break:clone;
+		&--1{
+				background-image:linear-gradient(to right bottom, 
+					                             rgba($color-secondary-light, .85), 
+					                             rgba($color-secondary-dark,  .85));
+		}
+	}
+
+	&__details{
+		// padding:5px;
+		ul{
+			padding-top:2rem;
+			list-style:none;
+			// background:red;
+			width:80%;
+			margin:0 auto;
+			li{
+				text-align:center;
+				font-size:1.5rem;
+				padding:1rem;
+
+				&:not(:last-child){
+					border-bottom:1px solid #eee;
+				}
+			}
+		}
+	}
+}
